@@ -1,0 +1,11 @@
+name: myGroundsKeeper
+main: REALDrummer.myGroundsKeeper
+version: 0
+description: >
+             Your server map now looks pretty!
+commands:
+   myGroundsKeeper:
+      aliases: [mGK]
+      description: This command makes myGroundsKeeper check for updates with just the "update" parameter or turns the auto-updater on or off.
+      usage: |
+           /<command> update ("on"/"off")
