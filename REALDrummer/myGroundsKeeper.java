@@ -42,9 +42,8 @@ public class myGroundsKeeper extends JavaPlugin implements Listener {
 	public static ConsoleCommandSender console;
 	public static BukkitScheduler scheduler;
 	private static boolean auto_update = true;
-	private static String[] enable_messages = { "Man, I hate creepers.", "Ka-BOOM!!\nThat's a'ight. I got it.",
-			"\"Maintaining the beauty of your server since 2013\"...", "I went through all that training with that red-headed nut Willie for this?",
-			"I'm tiny, but that don't mean I ain't good at mah job.",
+	private static String[] enable_messages = { "Man, I hate creepers.", "Ka-BOOM!!\nThat's a'ight. I got it.", "\"Maintaining the beauty of your server since 2013\"...",
+			"I went through all that training with that red-headed nut Willie for this?", "I'm tiny, but that don't mean I ain't good at mah job.",
 			"No configurations, commands, settings, or complications. Just sit back and I'll fix your screwups." }, disable_messages = {
 			"I'll get rid of the rest of your creeper holes once you come back.", "Phew. Another day of work all wrapped up.",
 			"Great. More money to give to my ex. Thanks, I guess.", "My favorite time of day: punchin' out." };
@@ -81,8 +80,7 @@ public class myGroundsKeeper extends JavaPlugin implements Listener {
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String command, String[] parameters) {
-		if ((command.equalsIgnoreCase("myGroundsKeeper") || command.equalsIgnoreCase("mGK")) && parameters.length == 1
-				&& parameters[0].toLowerCase().startsWith("update")) {
+		if ((command.equalsIgnoreCase("myGroundsKeeper") || command.equalsIgnoreCase("mGK")) && parameters.length == 1 && parameters[0].toLowerCase().startsWith("update")) {
 			if (!(sender instanceof Player) || sender.isOp())
 				checkForUpdates(sender);
 			else if (command.equalsIgnoreCase("myGroundsKeeper"))
@@ -155,7 +153,7 @@ public class myGroundsKeeper extends JavaPlugin implements Listener {
 				block.location.getBlock().setData(block.data);
 				// make myGuardDog log the action
 				if (server.getPluginManager().getPlugin("myGuardDog") != null)
-					myGuardDog.events.add(new Event("myGroundsKeeper", "repaired", new Integer[] { block.id }, block.location, null));
+					myGuardDog.events.add(new Event("myGroundsKeeper", "repaired", Wiki.getItemName(block.id, block.data, true, true), block.location, null));
 				creeper_hole.remove(block);
 				// update the information in creeper_holes
 				creeper_holes.add(creeper_hole);
@@ -356,18 +354,14 @@ public class myGroundsKeeper extends JavaPlugin implements Listener {
 							while ((count = in.read(data, 0, 1024)) != -1)
 								fout.write(data, 0, count);
 							if (!(sender instanceof Player))
-								sender.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.UNDERLINE
-										+ "That's the most work I've done all week. Yer myGroundsKeeper v" + newest_online_version
-										+ " is in yer myGroundsKeeper folder. Go get it if you like.");
+								sender.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.UNDERLINE + "That's the most work I've done all week. Yer myGroundsKeeper v"
+										+ newest_online_version + " is in yer myGroundsKeeper folder. Go get it if you like.");
 							for (Player player : server.getOnlinePlayers())
 								if (player.isOp() && (!(sender instanceof Player) || !sender.getName().equals(player.getName())))
-									player.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.UNDERLINE
-											+ "That's the most work I've done all week. Yer myGroundsKeeper v" + newest_online_version
-											+ " is in yer myGroundsKeeper folder. Go get it if you like.");
+									player.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.UNDERLINE + "That's the most work I've done all week. Yer myGroundsKeeper v"
+											+ newest_online_version + " is in yer myGroundsKeeper folder. Go get it if you like.");
 						} catch (Exception ex) {
-							sender.sendMessage(ChatColor.DARK_RED
-									+ "Oh, boy. myGroundsKeeper v"
-									+ newest_online_version
+							sender.sendMessage(ChatColor.DARK_RED + "Oh, boy. myGroundsKeeper v" + newest_online_version
 									+ " is out, but somethin' jacked up the download. You're gonna have to go to BukkitDev and get it yourself. It's your problem now.");
 						} finally {
 							try {
