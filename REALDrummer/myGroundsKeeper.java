@@ -153,7 +153,7 @@ public class myGroundsKeeper extends JavaPlugin implements Listener {
 				block.location.getBlock().setData(block.data);
 				// make myGuardDog log the action
 				if (server.getPluginManager().getPlugin("myGuardDog") != null)
-					myGuardDog.events.add(new Event("myGroundsKeeper", "repaired", Wiki.getItemName(block.id, block.data, true, true), block.location, null));
+					myGuardDog.events.add(new Event("myGroundsKeeper", "repaired", (Block) block, null));
 				creeper_hole.remove(block);
 				// update the information in creeper_holes
 				creeper_holes.add(creeper_hole);
